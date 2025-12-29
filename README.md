@@ -3,13 +3,13 @@ This is a little Python script I threw together (which I'm sure is in dire need 
 
 ## Abstract Overview of the Algorithm
 
-As the knight progresses through a tour, it accumulates depth and save each cell it's visited to a list. The tour is completed if the depth is equal to the board's width times it's height.
+As the knight progresses through a tour, it accumulates depth and saves each cell it's visited to a list. The tour is completed if the depth is equal to the board's width times it's height.
 
 Each cell on the chess board is represented by a list of four items: x coordinates, y coordinates, a boolean representing whether that cell has been visited, and a list of depths. For instance, a cell with the values 
 
 ```[5, 5, False, [40, 47, 55]]``` 
 
-tells the knight "I have not been visited, but don't visit me if you're on move 39, 46, or 54."
+tells the knight "I am at coordinates 5,5. I have not been visited, but don't visit me if you're on move 39, 46, or 54."
 
 The knight is first given a list of cells to which it can move without running off the edge of the board. These cells are further whittled down to which ones have not been visited and do not contain any forbidden depth value. If it cannot find such a cell, then it will remove it's current depth plus one from the depth list of all targeted cells, add its current depth to it's current cells depth list, mark its current cell as unvisited, delete its current cell from its list of visited cells, and return to the last visited cell. This is for the knight to remember which cells are dead ends from its current sequence of moves. If it tries to backtrace past its starting square, then then the program will break the main loop and inform the user that a Knight's Tour is impossible with the given parameters (because it's exhausted all possible paths).
 
